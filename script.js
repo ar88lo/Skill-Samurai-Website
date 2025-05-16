@@ -6,23 +6,23 @@
 */
 const students = [
   {
-    id: "alice",
-    name: "Alice K.",
-    avatar: "avatars/alice.png",
+    id: "toby",
+    name: "Tobias T.",
+    avatar: "avatars/toby.jpeg",
     projects: [
       {
-        title: "Platformer Game",
-        url: "https://app.bsd.education/share/2gqiyvfH",
-        img: "images/alice_platformer.jpg",
+        title: "Online Coffee Shop",
+        url: "https://app.bsd.education/share/5y5W87do/",
+        img: "https://bsd.education/wp-content/uploads/2020/07/Screen-Shot-2022-01-04-at-7.57.34-AM-768x333.png",
         description:
-          "Alice laid out tile-based levels and implemented smooth jumping physics. Next: enemy AI."
+          `Alice has finished the creation of the website template. Next: Adding login functionality.`
       },
       {
-        title: "Weather Dashboard",
+        title: "Snake Game",
         url: "https://app.bsd.education/share/2gqiyvfH",
-        img: "images/alice_weather.jpg",
+        img: "https://bsd.education/wp-content/uploads/2020/07/Screen-Shot-2022-01-04-at-7.57.52-AM-768x398.png",
         description:
-          "Now pulls live data; styling pass complete. Currently adding hourly forecast graphs."
+          "The singleplayer version is completed, Next step : working on multiplayer"
       }
     ]
   },
@@ -96,7 +96,7 @@ function renderStudent(id) {
             (p) => `
           <div class="project-card">
             <a href="${p.url}" target="_blank" rel="noopener" class="thumb">
-              <img src="${p.img}" alt="Screenshot of ${p.title}" />
+              <img fetchpriority="high" decoding="async" class="alignnone  wp-image-18889" src="${p.img}" alt="Screenshot of ${p.title}" width="450" height="195" sizes="(max-width: 450px) 100vw, 450px">
             </a>
             <div class="info">
               <h3>${p.title}</h3>

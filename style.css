@@ -5,6 +5,7 @@
   --ss-orange: #f5821f;
   --ss-light:  #ffffff;
   --ss-grey:   #f2f7fa;
+  --ss-pink:   #EA4187;
 }
 
 /* ----- reset / base ----- */
@@ -54,7 +55,7 @@ main {
 
 /* ----- student card (home) ----- */
 .student-card {
-  background: var(--ss-light);
+  background: var(--ss-navy);
   border-radius: 12px;
   box-shadow: 0 3px 6px rgb(0 0 0 / 0.08);
   overflow: hidden;
@@ -63,7 +64,7 @@ main {
 }
 .student-card:hover { transform: translateY(-4px); }
 
-.student-card a { text-decoration: none; color: inherit; display: block; padding: 1.25rem 0.5rem; }
+.student-card a { text-decoration: none; color: var(--ss-pink); display: block; padding: 1.25rem 0.5rem; }
 
 .student-card img.avatar {
   width: 96px;
@@ -78,7 +79,7 @@ main {
 
 /* ----- project card (student page) ----- */
 .project-card {
-  background: var(--ss-light);
+  background: var(--ss-navy);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 3px 6px rgb(0 0 0 / 0.08);
@@ -103,9 +104,9 @@ main {
 .project-card .info h3 {
   font-size: 1.05rem;
   margin-bottom: 0.4rem;
-  color: var(--ss-blue);
+  color: var(--ss-pink);
 }
-.project-card .info p { font-size: 0.92rem; }
+.project-card .info p { font-size: 0.92rem; color : var(--ss-blue)}
 
 /* ----- back link & headline on student page ----- */
 .back { text-decoration: none; color: var(--ss-blue); font-weight: 600; }
