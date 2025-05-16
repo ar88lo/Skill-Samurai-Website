@@ -1,0 +1,126 @@
+/* ========== colour palette (Skill Samurai NZ) ========== */
+:root {
+  --ss-navy:   #0E1A24;
+  --ss-blue:   #27aae1;
+  --ss-orange: #f5821f;
+  --ss-light:  #ffffff;
+  --ss-grey:   #f2f7fa;
+}
+
+/* ----- reset / base ----- */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--ss-grey);
+  color: var(--ss-navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+/* ----- header ----- */
+header {
+  background: var(--ss-navy);
+  color: var(--ss-light);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.15);
+}
+
+#logo { height: 48px; flex: 0 0 auto; }
+header h1 { font-size: 1.3rem; font-weight: 600; }
+
+/* ----- main ----- */
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1 0 auto;
+}
+
+/* ----- generic grid ----- */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ----- student card (home) ----- */
+.student-card {
+  background: var(--ss-light);
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.15s;
+}
+.student-card:hover { transform: translateY(-4px); }
+
+.student-card a { text-decoration: none; color: inherit; display: block; padding: 1.25rem 0.5rem; }
+
+.student-card img.avatar {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
+  border: 3px solid var(--ss-blue);
+}
+
+.student-card h2 { font-size: 1.1rem; }
+
+/* ----- project card (student page) ----- */
+.project-card {
+  background: var(--ss-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s;
+}
+.project-card:hover { transform: translateY(-4px); }
+
+.project-card a.thumb {
+  display: block;
+  border-bottom: 4px solid var(--ss-blue);
+}
+.project-card a.thumb img {
+  width: 100%;
+  display: block;
+}
+
+.project-card .info {
+  padding: 0.8rem 1rem 1.2rem;
+}
+.project-card .info h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  color: var(--ss-blue);
+}
+.project-card .info p { font-size: 0.92rem; }
+
+/* ----- back link & headline on student page ----- */
+.back { text-decoration: none; color: var(--ss-blue); font-weight: 600; }
+.student-name {
+  font-size: 2rem;
+  margin: 0.6rem 0 1.4rem;
+  color: var(--ss-orange);
+}
+
+/* ----- footer ----- */
+footer {
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--ss-navy);
+  color: var(--ss-light);
+  font-size: 0.85rem;
+}
+
