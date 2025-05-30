@@ -133,3 +133,6 @@ footer {
   gap: 1.5rem;
   justify-content: center;                         /* centre the whole grid */
 }
+.project-card .info p {
+  white-space: pre-line;   /* convert \n to <br> visually */
+}

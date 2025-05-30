@@ -4,32 +4,52 @@
 const sampleProjects = {
   beginner: [
     {
-      title: "Animated Greeting Card",
-      url: "https://app.bsd.education/share/2gqiyvfH",
-      img: "samples/beginner_card.jpg",
-      description: "Intro to HTML & CSS: a festive card with simple animations."
+      title: "Whack-A-Mole",
+      url: "",
+      img: "images/whack.jpg",
+      description: "Smash the mole before it disappears—loops, timers, and click events in action. \n\n\n\n \n Scratch, Python, Javascript"
     },
     {
-      title: "Basic Calculator",
-      url: "https://app.bsd.education/share/2gqiyvfH",
-      img: "samples/beginner_calc.jpg",
-      description: "Learners practise JavaScript variables and DOM events."
+      title: "Hangman",
+      url: "",
+      img: "images/hangman.png",
+      description: "Find the missing word or words by guessing letters. \n\n Scratch, Python, Javascript"
+    },
+    {
+      title: "Virtual Pet",
+      url: "",
+      img: "images/pet.jpg",
+      description: "Feed, play, and tuck your pixel-pet into bed—introduces state variables and timers. \n\n\n\n\n\n Scratch, Python, Javascript"
     }
   ],
+
   medium: [
     {
-      title: "Trivia Quiz",
-      url: "https://app.bsd.education/share/2gqiyvfH",
-      img: "samples/medium_quiz.jpg",
-      description: "Dynamic question pool, score keeping, and feedback screens."
-    }
-  ],
-  advanced: [
+      title: "Endless Runner (“Space Dash”)",
+      url: "",
+      img: "images/space.png",
+      description: "Side-scrolling action with jump physics, collision detection, and a distance score. \n\n Python, Javascript"
+    },
     {
       title: "Weather Dashboard",
-      url: "https://app.bsd.education/share/2gqiyvfH",
-      img: "samples/adv_weather.jpg",
-      description: "API-driven app with async fetch, search history, and charts."
+      url: "",
+      img: "images/weather.png",
+      description: "Live API data, search history, and colourful icons—perfect intro to fetch & async. \n\n Python, Javascript"
+    }
+  ],
+
+  advanced: [
+    {
+      title: "Collaborative Pixel Art Board",
+      url: "",
+      img: "images/pixel.jpg",
+      description: "Paint one pixel at a time with friends—real-time updates via Firebase Realtime DB. \n\n Javascript"
+    },
+    {
+      title: "Procedural Dungeon Explorer",
+      url: "",
+      img: "images/dungeon.jpeg",
+      description: "Randomly generated maze, treasures, and enemies—learn algorithms plus a game loop. \n\n Python "
     }
   ]
 };
@@ -43,13 +63,13 @@ const students = [
     projects: [
       {
         title: "Platformer Game",
-        url: "https://app.bsd.education/share/2gqiyvfH",
+        url: "",
         img: "images/alice_platformer.jpg",
         description: "Tile-based levels, jump physics done; enemy AI in progress."
       },
       {
         title: "Weather Dashboard",
-        url: "https://app.bsd.education/share/2gqiyvfH",
+        url: "",
         img: "images/alice_weather.jpg",
         description: "Pulls live data; now adding hourly forecast graphs."
       }
@@ -62,7 +82,7 @@ const students = [
     projects: [
       {
         title: "Trivia Quiz",
-        url: "https://app.bsd.education/share/2gqiyvfH",
+        url: "",
         img: "images/ben_quiz.jpg",
         description: "Question flow finished; working on high-score storage."
       }
@@ -85,7 +105,7 @@ function route() {
 }
 
 function renderLanding() {
-  document.title = "Projects Hub │ Skill Samurai";
+  document.title = "Co-Lab │ Skill Samurai";
   const main = document.getElementById("content");
   main.innerHTML = `
     <section class="grid menu-grid">
