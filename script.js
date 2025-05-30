@@ -1,28 +1,57 @@
-/* =========  DATA  ===================================== *
- * Add / edit here – each student owns an array of projects
- *  - id ⇢ string, unique, used in URL hash (#id)
- *  - avatar ⇢ local image path
- *  - projects = [ {title, url, img, description}, … ]
-*/
+/* =========  DATA  ================================================= */
+
+/* ‣ Sample projects (grouped by difficulty) */
+const sampleProjects = {
+  beginner: [
+    {
+      title: "Animated Greeting Card",
+      url: "https://app.bsd.education/share/2gqiyvfH",
+      img: "samples/beginner_card.jpg",
+      description: "Intro to HTML & CSS: a festive card with simple animations."
+    },
+    {
+      title: "Basic Calculator",
+      url: "https://app.bsd.education/share/2gqiyvfH",
+      img: "samples/beginner_calc.jpg",
+      description: "Learners practise JavaScript variables and DOM events."
+    }
+  ],
+  medium: [
+    {
+      title: "Trivia Quiz",
+      url: "https://app.bsd.education/share/2gqiyvfH",
+      img: "samples/medium_quiz.jpg",
+      description: "Dynamic question pool, score keeping, and feedback screens."
+    }
+  ],
+  advanced: [
+    {
+      title: "Weather Dashboard",
+      url: "https://app.bsd.education/share/2gqiyvfH",
+      img: "samples/adv_weather.jpg",
+      description: "API-driven app with async fetch, search history, and charts."
+    }
+  ]
+};
+
+/* ‣ Student profiles and their projects */
 const students = [
   {
-    id: "toby",
-    name: "Tobias T.",
-    avatar: "avatars/toby.jpeg",
+    id: "alice",
+    name: "Alice K.",
+    avatar: "avatars/alice.png",
     projects: [
       {
-        title: "Online Coffee Shop",
-        url: "https://app.bsd.education/share/5y5W87do/",
-        img: "https://bsd.education/wp-content/uploads/2020/07/Screen-Shot-2022-01-04-at-7.57.34-AM-768x333.png",
-        description:
-          `Alice has finished the creation of the website template. Next: Adding login functionality.`
+        title: "Platformer Game",
+        url: "https://app.bsd.education/share/2gqiyvfH",
+        img: "images/alice_platformer.jpg",
+        description: "Tile-based levels, jump physics done; enemy AI in progress."
       },
       {
-        title: "Snake Game",
+        title: "Weather Dashboard",
         url: "https://app.bsd.education/share/2gqiyvfH",
-        img: "https://bsd.education/wp-content/uploads/2020/07/Screen-Shot-2022-01-04-at-7.57.52-AM-768x398.png",
-        description:
-          "The singleplayer version is completed, Next step : working on multiplayer"
+        img: "images/alice_weather.jpg",
+        description: "Pulls live data; now adding hourly forecast graphs."
       }
     ]
   },
@@ -35,30 +64,76 @@ const students = [
         title: "Trivia Quiz",
         url: "https://app.bsd.education/share/2gqiyvfH",
         img: "images/ben_quiz.jpg",
-        description:
-          "Basic question flow done; working on persistent high-score storage using localStorage."
+        description: "Question flow finished; working on high-score storage."
       }
     ]
   }
 ];
 
-/* =========  ROUTER  =================================== */
+/* =========  ROUTER  =============================================== */
 window.addEventListener("DOMContentLoaded", route);
 window.addEventListener("hashchange", route);
 
 function route() {
-  const hash = location.hash.replace("#", "");
-  if (!hash || hash === "home") renderHome();
-  else renderStudent(hash);
+  const hash = location.hash.replace("#", "") || "home";
+  switch (hash) {
+    case "home":     renderLanding();             break;
+    case "samples":  renderSamples();             break;
+    case "students": renderStudentsPage();        break;
+    default:         renderStudent(hash);         break;  // #alice, #ben…
+  }
 }
 
-/* ---------- HOME (students) ---------- */
-function renderHome() {
+function renderLanding() {
+  document.title = "Projects Hub │ Skill Samurai";
   const main = document.getElementById("content");
+  main.innerHTML = `
+    <section class="grid menu-grid">
+      <div class="menu-card" onclick="location.hash='samples'">
+        <h2>Sample Projects</h2>
+      </div>
+      <div class="menu-card" onclick="location.hash='students'">
+        <h2>Student Projects</h2>
+      </div>
+    </section>
+  `;
+}
+
+
+
+/* ---------- SAMPLE PROJECTS PAGE ---------- */
+function renderSamples() {
+  document.title = "Sample Projects │ Skill Samurai";
+  const main = document.getElementById("content");
+
+  const block = (difficulty, niceName) => `
+    <h3 class="section-head">${niceName}</h3>
+    <div class="grid">
+      ${sampleProjects[difficulty]
+        .map(cardTemplate)
+        .join("")}
+    </div>
+  `;
+
+  main.innerHTML = `
+    <article>
+      <a href="#home" class="back">← Back to menu</a>
+      <h2 class="page-title">Sample Projects</h2>
+      ${block("beginner", "Beginner")}
+      ${block("medium", "Medium")}
+      ${block("advanced", "Advanced")}
+    </article>
+  `;
+}
+
+/* ---------- STUDENTS LIST PAGE ---------- */
+function renderStudentsPage() {
   document.title = "Student Projects │ Skill Samurai";
+  const main = document.getElementById("content");
   main.innerHTML = `
     <section>
-      <h2 style="margin-bottom:1rem;color:var(--ss-blue);font-size:1.8rem;">Our Students</h2>
+      <a href="#home" class="back">← Back to menu</a>
+      <h2 class="page-title">Our Students</h2>
       <div class="grid">
         ${students
           .map(
@@ -76,40 +151,42 @@ function renderHome() {
   `;
 }
 
-/* ---------- STUDENT PAGE (projects) ---------- */
+/* ---------- INDIVIDUAL STUDENT PAGE ---------- */
 function renderStudent(id) {
   const student = students.find((s) => s.id === id);
   const main = document.getElementById("content");
+
   if (!student) {
-    main.innerHTML = `<p>Student not found. <a href="#home">Go back</a>.</p>`;
+    main.innerHTML = `<p>Student not found. <a href="#home">Go home</a>.</p>`;
     return;
   }
 
   document.title = `${student.name} │ Skill Samurai`;
   main.innerHTML = `
     <article>
-      <a href="#home" class="back">← Back to all students</a>
-      <h2 class="student-name">${student.name}</h2>
+      <a href="#students" class="back">← Back to students</a>
+      <h2 class="page-title">${student.name}</h2>
       <div class="grid">
-        ${student.projects
-          .map(
-            (p) => `
-          <div class="project-card">
-            <a href="${p.url}" target="_blank" rel="noopener" class="thumb">
-              <img fetchpriority="high" decoding="async" class="alignnone  wp-image-18889" src="${p.img}" alt="Screenshot of ${p.title}" width="450" height="195" sizes="(max-width: 450px) 100vw, 450px">
-            </a>
-            <div class="info">
-              <h3>${p.title}</h3>
-              <p>${p.description}</p>
-            </div>
-          </div>`
-          )
-          .join("")}
+        ${student.projects.map(cardTemplate).join("")}
       </div>
     </article>
   `;
 }
 
-/* ---------- misc (footer year) ---------- */
-document.getElementById("year").textContent = new Date().getFullYear();
+/* ---------- SHARED CARD TEMPLATE ---------- */
+function cardTemplate(p) {
+  return `
+    <div class="project-card">
+      <a href="${p.url}" target="_blank" rel="noopener" class="thumb">
+        <img src="${p.img}" alt="Screenshot of ${p.title}" />
+      </a>
+      <div class="info">
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+      </div>
+    </div>
+  `;
+}
 
+/* ---------- footer year ---------- */
+document.getElementById("year").textContent = new Date().getFullYear();
